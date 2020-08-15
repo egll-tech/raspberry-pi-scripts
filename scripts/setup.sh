@@ -14,6 +14,13 @@ if [[ "$EUID" != 0 ]]; then
     fi
 fi
 
+# Updating server name
+read -p "How would you like to name your server: " name
+echo "Updating hostname and hosts file"
+sudo sed -i 's/.+/name/g' /etc/hostname
+sudo sed -i "1s;^;127.0.0.1 $name\n;" /etc/hosts
+
+
 # Installing required packages
 {
 	sudo apt update --fix-missing -y
