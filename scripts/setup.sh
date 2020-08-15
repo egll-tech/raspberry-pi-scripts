@@ -33,6 +33,7 @@ printf "\b \n"
 exit 0
 
 # Disable power save from wlan
+echo "Disabling power save on wlan."
 cat > /lib/systemd/system/disable-power-save.service <<EOL
 [Unit]
 Description=Disabling power save
@@ -52,4 +53,12 @@ EOL
 sudo systemctl daemon-reload
 sudo systemctl enable --now disable-power-save.service &> /dev/null
 
+# Add ssh to the firewall
+echo "Allowing ssh in the firewall"
+{
+  sudo ufw allow ssh
+  sudo ufw enable
+} &> /dev/null
+
+echo "Your new server is ready to ROLL!"
 exit 0
