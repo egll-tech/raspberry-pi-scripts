@@ -1,4 +1,4 @@
-# Raspberry Pi scripts
+# Raspberry Pi notes
 
 Repository to upload document, scripts and important information to be able to achieve the best results while using Raspberry Pi 4.
 Most of the things uploaded will be focused in Ubuntu Server 20.04.1
