@@ -50,6 +50,6 @@ WantedBy=multi-user.target
 EOL
 
 sudo systemctl daemon-reload
-sudo systemctl enable --now disable-power-save.service
+sudo systemctl enable --now disable-power-save.service &> /dev/null
 
 exit 0
