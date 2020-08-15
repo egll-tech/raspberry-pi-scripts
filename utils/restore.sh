@@ -6,9 +6,7 @@
 # by Eduardo Guzman Lau Len (egll.tech)
 
 # Check sudo rights
-if [[ "$EUID" = 0 ]]; then
-    echo "Already root"
-else
+if [[ "$EUID" != 0 ]]; then
     sudo -k # make sure to ask for password on next sudo
     if sudo false; then
         echo "Wrong password"
@@ -54,17 +52,16 @@ fi
 
 
 # Restoring backup
-echo "Restoring $name to disk $drive..."
 {
 	gunzip --stdout $name | sudo dd bs=4M of=$drive
 } &> /dev/null &
 PID=$!
 i=1
 sp="/-\|"
-echo -n ' '
+echo -n "Restoring $name to disk $drive... "
 while [ -d /proc/$PID ]
 do
   printf "\b${sp:i++%${#sp}:1}"
 done
-printf "\b"
+printf "\b \n"
 exit 0

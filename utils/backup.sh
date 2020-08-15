@@ -6,9 +6,7 @@
 # by Eduardo Guzman Lau Len (egll.tech)
 
 # Check sudo rights. Required to make sure it has the right permits to clone the SD card and compress it.
-if [[ "$EUID" = 0 ]]; then
-    echo "Already root"
-else
+if [[ "$EUID" != 0 ]]; then
     sudo -k # make sure to ask for password on next sudo
     if sudo false; then
         echo "Wrong password"
@@ -43,17 +41,16 @@ then
 fi
 
 # Generating backup
-echo "Generating $name from disk $drive..."
 {
 	sudo dd bs=4M if=$drive | gzip > $name.img.gz 
 } &> /dev/null &
 PID=$!
 i=1
 sp="/-\|"
-echo -n ' '
+echo -n "Generating $name from disk $drive... "
 while [ -d /proc/$PID ]
 do
   printf "\b${sp:i++%${#sp}:1}"
 done
-printf "\b"
+printf "\b \n"
 exit 0
