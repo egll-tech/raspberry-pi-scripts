@@ -37,7 +37,6 @@ do
   printf "\b${sp:i++%${#sp}:1}"
 done
 printf "\b \n"
-exit 0
 
 # Disable power save from wlan
 echo "Disabling power save on wlan."
