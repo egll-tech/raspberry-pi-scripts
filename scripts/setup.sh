@@ -60,7 +60,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now disable-power-save.service &> /dev/null
 
 # Add ssh to the firewall
-echo "Allowing ssh in the firewall"
+echo "Allowing ssh in the firewall. If you are using ssh, you will need to re-login"
 {
   sudo ufw allow ssh
   sudo ufw enable
