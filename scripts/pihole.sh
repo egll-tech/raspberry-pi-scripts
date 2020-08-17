@@ -24,4 +24,9 @@ nameserver 1.0.0.3
 EOL
 
 echo "Installing pihole"
-curl -sL https://raw.githubusercontent.com/pi-hole/docker-pi-hole/master/docker_run.sh | sudo -E bash -
+curl -sL https://raw.githubusercontent.com/pi-hole/docker-pi-hole/master/docker_run.sh > docker_run.sh
+timezone=$(timedatectl show -p Timezone | cut -d '=' -f 2)
+sed -i "s|TZ=[',\"].\+[',\"]|TZ=\"$timezone\"|g" docker_run.sh
+sudo chmod +x docker_run.sh &> /dev/null
+sudo ./docker_run.sh
+rm docker_run.sh
