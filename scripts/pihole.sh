@@ -17,11 +17,9 @@ fi
 echo "Disabling current DNS server"
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved &> /dev/null
-sudo mv /etc/resolv.conf /etc/resolv.conf.bak
-sudo cat > /etc/resolv.conf <<EOL
-nameserver 1.1.1.3
-nameserver 1.0.0.3
-EOL
+sudo touch /etc/resolv.conf
+sudo echo "nameserver 1.1.1.3" >> /etc/resolv.conf
+sudo echo "nameserver 1.0.0.3" >> /etc/resolv.conf
 
 echo "Installing pihole"
 curl -sL https://raw.githubusercontent.com/pi-hole/docker-pi-hole/master/docker_run.sh > docker_run.sh
