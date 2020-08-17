@@ -17,6 +17,7 @@ fi
 echo "Disabling current DNS server"
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved &> /dev/null
+sudo mv /etc/resolv.conf /etc/resolv.conf.bak
 sudo touch /etc/resolv.conf
 sudo bash -c 'echo "nameserver 1.1.1.3" >> /etc/resolv.conf'
 sudo bash -c 'echo "nameserver 1.0.0.3" >> /etc/resolv.conf'
