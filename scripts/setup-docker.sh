@@ -34,6 +34,6 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 sudo systemctl enable docker &> /dev/null
-echo "You can login using $(tput bold)docker login $(tput normal)"
+echo "You can login using $(tput bold)docker login $(tput sgr0)"
 exit 0
 
