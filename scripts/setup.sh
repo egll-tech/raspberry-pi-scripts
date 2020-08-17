@@ -40,7 +40,7 @@ printf "\b \n"
 
 # Disable power save from wlan
 echo "Disabling power save on wlan."
-cat > /lib/systemd/system/disable-power-save.service <<EOL
+sudo cat > /lib/systemd/system/disable-power-save.service <<EOL
 [Unit]
 Description=Disabling power save
 Wants=network-online.target
