@@ -63,7 +63,7 @@ sudo systemctl enable --now disable-power-save.service &> /dev/null
 echo "Allowing ssh in the firewall. If you are using ssh, you will need to re-login"
 {
   sudo ufw allow ssh
-  sudo ufw enable
+  echo "y" | sudo ufw enable
 } &> /dev/null
 
 echo "Your new server is ready to ROLL!"
